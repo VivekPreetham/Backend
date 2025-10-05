@@ -4,6 +4,17 @@ import { User } from "../models/user.model.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
 const registerUser = asyncHandler( async (req, res) => {
+
+    // get user details from frontend
+    // validation - not empty
+    // check if user already exists
+    // check for images, check for avatar
+    // upload images to cloudinary, avatar,
+    // create user object - create entry in db
+    // check for user creation
+    // return response
+
+
     const { username, email, password, fullname } = req.body;
     console.log("email: ", email);
     
@@ -13,7 +24,7 @@ const registerUser = asyncHandler( async (req, res) => {
             throw new ApiError(400, "All fields are required")
         }
 
-    const existedUser = User.findOne(
+    const existedUser = await User.findOne(
         { $or: [{email}, {username}]}
     )
     if(existedUser){
